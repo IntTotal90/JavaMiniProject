@@ -18,15 +18,15 @@ public class ProductService {
         }
     }
 
-    public void findProductByNo(int no) {
-        Product selectedProduct = productRepository.selectProductByNo(no);
-
-        if(selectedProduct != null) {
-            System.out.println(selectedProduct);
-        } else {
-            System.out.println("해당 번호를 가진 제품은 없습니다.");
-        }
-    }
+//    public void findProductByNo(int no) {
+//        Product selectedProduct = productRepository.selectProductByNo(no);
+//
+//        if(selectedProduct != null) {
+//            System.out.println(selectedProduct);
+//        } else {
+//            System.out.println("해당 번호를 가진 제품은 없습니다.");
+//        }
+//    }
 
     public void findProductByName(String name) {
         Product selectedProduct = productRepository.selectProductByName(name);
@@ -59,25 +59,25 @@ public class ProductService {
         }
     }
 
-    public void increaseProduct(Product product) {
-
-        product.setStock(product.getStock() + 1);
-
-        int result = productRepository.updateProduct(product);
-
-        if(result == 1)
-            System.out.println(product.getName() + " 제품 수량 증가가 완료 되었습니다.");
-    }
-
-    public void decreaseProduct(Product product) {
-
-        product.setStock(product.getStock() - 1);
-
-        int result = productRepository.updateProduct(product);
-
-        if(result == 1)
-            System.out.println(product.getName() + " 제품 수량 감소가 완료 되었습니다.");
-    }
+//    public void increaseProduct(Product product) {
+//
+//        product.setStock(product.getStock() + 1);
+//
+//        int result = productRepository.updateProduct(product);
+//
+//        if(result == 1)
+//            System.out.println(product.getName() + " 제품 수량 증가가 완료 되었습니다.");
+//    }
+//
+//    public void decreaseProduct(Product product) {
+//
+//        product.setStock(product.getStock() - 1);
+//
+//        int result = productRepository.updateProduct(product);
+//
+//        if(result == 1)
+//            System.out.println(product.getName() + " 제품 수량 감소가 완료 되었습니다.");
+//    }
 
     public boolean isExpiredProduct(Product product) {
 
