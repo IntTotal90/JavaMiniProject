@@ -5,15 +5,26 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
+/* Product 클래스 : 생성자 */
 public class Product implements Serializable {
+
+    /*
+    * number : 상품 번호
+    * name : 상품명
+    * price : 상품 가격
+    * stock : 상품 재고
+    * endDay : 유통기한
+    * */
     protected int number;
     protected String name;
     protected int price;
     protected int stock;
     protected LocalDate endDay;
 
+    /* 기본 생성자 */
     public Product() { }
 
+    /* Product 클래스 : 생성자 */
     public Product(int number, String name, int price, int stock, LocalDate endDay) {
         this.number = number;
         this.name = name;
@@ -22,6 +33,7 @@ public class Product implements Serializable {
         this.endDay = endDay;
     }
 
+    /* ======= getter / setter ======= */
     public int getNumber() {
         return number;
     }
