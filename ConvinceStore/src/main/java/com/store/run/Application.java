@@ -14,14 +14,15 @@ public class Application {
 
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
+
+        label:
         while(true){
             System.out.println(" ** 편의점 제품 관리 시스템 ** ");
             System.out.println("1. 모든 제품 보기");
             System.out.println("2. 제품 찾기");
             System.out.println("3. 제품 추가");
             System.out.println("4. 제품 수정");
-            System.out.println("5. 제품 폐기");
-            System.out.println("6. 제품 결제");
+            System.out.println("5. 제품 삭제");
             System.out.println("0. 프로그램 종료");
             System.out.print("번호 선택 : ");
             int choice = scanner.nextInt();
@@ -47,15 +48,12 @@ public class Application {
                     productService.modifyProduct(reform(selected));
                     break;
                 case 5:
-                    // 제품 폐기
+                    // 제품 삭제
                     productService.removeProduct(chooseName());
-                    break;
-                case 6:
-                    // 제품 결제
                     break;
                 case 0:
                     System.out.println("편의점 제품 관리 프로그램을 종료합니다.");
-                    break;
+                    break label;
                 default:
                     System.out.println("번호를 잘 못 입력했습니다.");
 
@@ -63,7 +61,7 @@ public class Application {
         }
     }
 
-    // 제품 정보 보기 기능
+    // 제품 정보 이름 선택 기능
     private static String chooseName(){
         Scanner scanner = new Scanner(System.in);
         System.out.print("제품 이름 입력 : ");
@@ -80,6 +78,7 @@ public class Application {
             System.out.println("1. 가격 수정");
             System.out.println("2. 재고 수정");
             System.out.println("3. 날짜 수정");
+            System.out.println("4. 유통기한별 폐기");
             System.out.println("0: 메인 메뉴로 돌아가기");
             System.out.print("번호를 선택해 주세요 : ");
             int chooseNo = scanner.nextInt();
@@ -98,6 +97,10 @@ public class Application {
                     System.out.println("수정 아이템 날짜 입력: ");
                     modifiedProduct.setEndDay(LocalDate.parse(scanner.nextLine()));
                     break;
+                case 4:
+                    System.out.println("유통기한 지난 상품 폐기: ");
+                    productService.discardExpiredItems(scanner.nextLine());
+                    break;
                 case 0:
                     System.out.println("메인 메뉴로 돌아갑니다.");
                     return selected;
@@ -107,10 +110,8 @@ public class Application {
             }
             return modifiedProduct;
         }
-        /* 제품 수정 구현중 */
-
-
     }
+
 
     // 제품 추가
     private static Product addProduct() {
@@ -120,15 +121,18 @@ public class Application {
 
         System.out.print("제품 번호를 입력하세요 : ");
         int number = sc.nextInt();
+        sc.nextLine();
 
         System.out.print("제품명을 입력하세요 : ");
         String name = sc.nextLine();
 
-        System.out.println("제품 가격을 입력하세요 : ");
+        System.out.print("제품 가격을 입력하세요 : ");
         int price = sc.nextInt();
+        sc.nextLine();
 
         System.out.print("제품 재고를 입력하세요 : ");
         int stock = sc.nextInt();
+        sc.nextLine();
 
         System.out.print("제품 유통기한을 입력하세요 : ");
         LocalDate endDay = LocalDate.parse(sc.nextLine());
