@@ -84,12 +84,22 @@ public class ProductService {
         return LocalDate.now().isAfter(product.getEndDay());
     }
 
-    public void discardExpiredItems(Product product) {
-        if (isExpiredProduct(product)) {
-            System.out.println(product.getName() + " 기간이 만료되어 폐기될 예정입니다.");
-            product.setStock(product.getStock() - 1);
+    public void discardExpiredItems(String name) {
+
+        Product selectedProducts = productRepository.selectProductByName(name);
+
+        if (isExpiredProduct(selectedProducts)) {
+            System.out.println(selectedProducts.getName() + " 기간이 만료되어 폐기될 예정입니다.");
+            selectedProducts.setStock(selectedProducts.getStock() - 1);
         }
     }
+
+//    public void discardExpiredItems(Product product) {
+//        if (isExpiredProduct(product)) {
+//            System.out.println(product.getName() + " 기간이 만료되어 폐기될 예정입니다.");
+//            product.setStock(product.getStock() - 1);
+//        }
+//    }
 
     public Product findProductForModify(String name) {
 
