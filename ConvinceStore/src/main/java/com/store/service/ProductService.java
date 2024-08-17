@@ -29,7 +29,7 @@ public class ProductService {
     }
 
     public void findProductByName(String name) {
-        Product selectedProduct = productRepository.selectedProductByName(name);
+        Product selectedProduct = productRepository.selectProductByName(name);
 
         if(selectedProduct != null) {
             System.out.println(selectedProduct);
@@ -41,7 +41,7 @@ public class ProductService {
     public void regisProduct(Product product) {
 
         int lastGoodsNo = productRepository.selectLastProductNo();
-        product.setNo(lastGoodsNo + 1);
+        product.setNumber(lastGoodsNo + 1);
 
         int result = productRepository.insertProduct(product);
 
@@ -59,17 +59,49 @@ public class ProductService {
         }
     }
 
+    public void increaseProduct(Product product) {
+
+        product.setStock(product.getStock() + 1);
+
+        int result = productRepository.updateProduct(product);
+
+        if(result == 1)
+            System.out.println(product.getName() + " 제품 수량 증가가 완료 되었습니다.");
+    }
+
+    public void decreaseProduct(Product product) {
+
+        product.setStock(product.getStock() - 1);
+
+        int result = productRepository.updateProduct(product);
+
+        if(result == 1)
+            System.out.println(product.getName() + " 제품 수량 감소가 완료 되었습니다.");
+    }
+
+    public boolean isExpiredProduct(Product product) {
+
+        return LocalDate.now().isAfter(product.getEndDay());
+    }
+
+    public void discardExpiredItems(Product product) {
+        if (isExpiredProduct(product)) {
+            System.out.println(product.getName() + " 기간이 만료되어 폐기될 예정입니다.");
+            product.setStock(product.getStock() - 1);
+        }
+    }
+
     public Product findProductForModify(String name) {
 
-        Prodcut selectedProduct = productRepository.selectProductByName(name);
+        Product selectedProduct = productRepository.selectProductByName(name);
 
         if(selectedProduct != null) {
             Product newInstance = new Product();
-            newInstance.setNo(selectedProduct.getNo());
+            newInstance.setNumber(selectedProduct.getNumber());
             newInstance.setName(selectedProduct.getName());
-            newInstance.setQuantity(selectedProduct.getQuantity());
+            newInstance.setStock(selectedProduct.getStock());
             newInstance.setPrice(selectedProduct.getPrice());
-            newInstance.setExpirationDate(selectedProduct.getExpirationDate());
+            newInstance.setEndDay(selectedProduct.getEndDay());
             return newInstance;
         }
 
@@ -77,10 +109,10 @@ public class ProductService {
         return null;
     }
 
-    public void modifyProduct(Product product) {
-        int result =productRepository.updateProduct(product);
+    public Product modifyProduct(String name) {
+        Product product = productRepository.updateProduct(name);
 
-        if(result == 1) {
+        if(product != null) {
             System.out.println("제품 정보 수정이 완료 되었습니다.");
         } else {
             System.out.println("입력하신 제품 이름에 해당하는 제품이 없습니다.");
