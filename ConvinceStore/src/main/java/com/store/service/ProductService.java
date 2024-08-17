@@ -109,10 +109,10 @@ public class ProductService {
         return null;
     }
 
-    public Product modifyProduct(String name) {
-        Product product = productRepository.updateProduct(name);
+    public void modifyProduct(Product product) {
+        int result = productRepository.updateProduct(product);
 
-        if(product != null) {
+        if(result == 1) {
             System.out.println("제품 정보 수정이 완료 되었습니다.");
         } else {
             System.out.println("입력하신 제품 이름에 해당하는 제품이 없습니다.");
