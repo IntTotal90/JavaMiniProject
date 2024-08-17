@@ -42,7 +42,7 @@ public class Application {
                     break;
                 case 4:
                     // 제품 수정
-                    Product selected = productService.modifyProduct(chooseName());
+                    Product selected = productService.findProductForModify(chooseName());
                     if(selected == null) continue;
                     productService.modifyProduct(reform(selected));
                     break;
@@ -96,7 +96,7 @@ public class Application {
                     break;
                 case 3:
                     System.out.println("수정 아이템 날짜 입력: ");
-                    modifiedProduct.setEndDay(scanner.nextLine());
+                    modifiedProduct.setEndDay(LocalDate.parse(scanner.nextLine()));
                     break;
                 case 0:
                     System.out.println("메인 메뉴로 돌아갑니다.");
