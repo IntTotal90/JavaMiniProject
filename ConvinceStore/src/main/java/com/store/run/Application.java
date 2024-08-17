@@ -15,6 +15,7 @@ public class Application {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
 
+        // 메인 실행 페이지
         label:
         while(true){
             System.out.println(" ** 편의점 제품 관리 시스템 ** ");
@@ -73,6 +74,7 @@ public class Application {
         Product modifiedProduct = selected;
         Scanner scanner = new Scanner(System.in);
 
+        // 수정 시 실행 화면
         while(true){
             System.out.println(" ** 편의점 제품 수정 **");
             System.out.println("1. 가격 수정");
@@ -86,18 +88,22 @@ public class Application {
 
             switch (chooseNo){
                 case 1:
+                    // 제품 가격 수정
                     System.out.print("수정 아이템 가격 입력: ");
                     modifiedProduct.setPrice(scanner.nextInt());
                     break;
                 case 2:
+                    // 제품 재고 수정
                     System.out.print("수정 아이템 재고 입력: ");
                     modifiedProduct.setStock(scanner.nextInt());
                     break;
                 case 3:
+                    // 제품 유통기한 수정
                     System.out.println("수정 아이템 날짜 입력: ");
                     modifiedProduct.setEndDay(LocalDate.parse(scanner.nextLine()));
                     break;
                 case 4:
+                    // 제품 폐기
                     System.out.println("유통기한 지난 상품 폐기: ");
                     productService.discardExpiredItems(scanner.nextLine());
                     break;
@@ -119,21 +125,26 @@ public class Application {
 
         Scanner sc = new Scanner(System.in);
 
+        // 추가할 제품 번호
         System.out.print("제품 번호를 입력하세요 : ");
         int number = sc.nextInt();
         sc.nextLine();
 
+        // 추가할 제품명
         System.out.print("제품명을 입력하세요 : ");
         String name = sc.nextLine();
 
+        // 추가할 제품 가격
         System.out.print("제품 가격을 입력하세요 : ");
         int price = sc.nextInt();
         sc.nextLine();
 
+        // 추가할 제품 재고
         System.out.print("제품 재고를 입력하세요 : ");
         int stock = sc.nextInt();
         sc.nextLine();
 
+        // 추가할 제품 유통기한
         System.out.print("제품 유통기한을 입력하세요 : ");
         LocalDate endDay = LocalDate.parse(sc.nextLine());
 
