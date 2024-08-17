@@ -16,16 +16,15 @@ public class ProductRepository {
 
         if(!file.exists()) {
             ArrayList<Product> product = new ArrayList<>();
-            product.add(new Snack(1, "포카칩", 1700, 10, LocalDate.of(2024, 10, 20)));
-            product.add(new Snack(2, "포스틱", 1700, 10, LocalDate.of(2024, 11, 20)));
-            product.add(new Drink(3, "허쉬초콜릿드링크", 1400, 10, LocalDate.of(2025, 3, 25)));
-            product.add(new Drink(4, "코카콜라", 2000, 10, LocalDate.of(2025, 4, 27)));
-            product.add(new Meal(5, "삼각김밥", 1200, 4, LocalDate.of(2024, 8, 20)));
-            product.add(new Meal(6, "소시지", 1200, 4, LocalDate.of(2024, 9, 25)));
-            product.add(new Medicine(7, "박카스", 1300, 10, LocalDate.of(2024, 10, 20)));
+            product.add(new Product(1, "포카칩", 1700, 10, LocalDate.of(2024, 10, 20)));
+            product.add(new Product(2, "포스틱", 1700, 10, LocalDate.of(2024, 11, 20)));
+            product.add(new Product(3, "허쉬초콜릿드링크", 1400, 10, LocalDate.of(2025, 3, 25)));
+            product.add(new Product(4, "코카콜라", 2000, 10, LocalDate.of(2025, 4, 27)));
+            product.add(new Product(5, "삼각김밥", 1200, 4, LocalDate.of(2024, 8, 20)));
+            product.add(new Product(6, "소시지", 1200, 4, LocalDate.of(2024, 9, 25)));
+            product.add(new Product(7, "박카스", 1300, 10, LocalDate.of(2024, 10, 20)));
             saveProduct(file, product);
         }
-
         loadProduct(file);
     }
 
