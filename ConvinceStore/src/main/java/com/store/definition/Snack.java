@@ -8,7 +8,6 @@ public class Snack extends Product {
         super(number, name, price, stock, endDay);
     }
 
-    @Override
     public void eatSound() {
         System.out.println("바삭 바삭");
     }

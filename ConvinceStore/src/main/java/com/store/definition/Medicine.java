@@ -9,7 +9,6 @@ public class Medicine extends Product {
         super(number, name, price, stock, endDay);
     }
 
-    @Override
     public void eatSound() {
         System.out.println("으익 쓰다");
     }

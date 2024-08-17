@@ -3,7 +3,7 @@ package com.store.definition;
 import java.time.LocalDate;
 import java.util.Date;
 
-public abstract class Product {
+public class Product {
     protected int number;
     protected String name;
     protected int price;
@@ -59,6 +59,4 @@ public abstract class Product {
     public void setEndDay(LocalDate endDay) {
         this.endDay = endDay;
     }
-
-    public abstract void eatSound();
 }

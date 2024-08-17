@@ -9,7 +9,6 @@ public class Meal extends Product {
         super(number, name, price, stock, endDay);
     }
 
-    @Override
     public void eatSound() {
         System.out.println("냠냠");
     }
